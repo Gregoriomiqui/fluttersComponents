@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutters_components/src/providers/menu_providers.dart';
+import 'package:flutters_components/src/utils/icono_string_util.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -36,8 +37,8 @@ class HomePage extends StatelessWidget {
         children: [
           ListTile(
             title: Text(elem['texto']),
-            leading: Icon(Icons.ac_unit_outlined, color: Colors.blue,),
-            trailing: Icon(Icons.keyboard_arrow_right, color: Colors.yellow),
+            leading: getIcon(elem['icon']),
+            trailing: Icon(Icons.keyboard_arrow_right),
             onTap: (){
             },
           ),
