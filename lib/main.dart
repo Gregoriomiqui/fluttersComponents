@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutters_components/src/pages/home_page.dart';
 import 'package:flutters_components/src/pages/alert_page.dart';
-import 'package:flutters_components/src/pages/avatar_page.dart';
+import 'package:flutters_components/src/routes/routes.dart';
  
 void main() => runApp(MyApp());
  
@@ -13,10 +12,13 @@ class MyApp extends StatelessWidget {
       title: 'Componenetes APP',
       //home: HomePage(),
       initialRoute: '/',
-      routes: <String, WidgetBuilder>{
-        '/' : (BuildContext context) => HomePage(),
-        'alert' : (BuildContext context) => AlertPage(),
-        'avatar': (BuildContext context) => AvatarPage(),
+      routes: getApplicationRoutes(),
+      // cuando una ruta no esta definida en routes se ejecuta el onGenerateRoute
+      onGenerateRoute: ( RouteSettings settings) {
+        print('ruta llamada: ${settings.name} ');
+        return MaterialPageRoute(
+          builder: ( BuildContext context) => AlertPage()
+        );
       },
     );
   }
