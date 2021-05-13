@@ -11,6 +11,22 @@ class CardPage extends StatelessWidget {
             _cardTipo1(),
             SizedBox(height: 30.0),
             _cardTipo2(),
+            SizedBox(height: 30.0),
+            _cardTipo1(),
+            SizedBox(height: 30.0),
+            _cardTipo2(),
+            SizedBox(height: 30.0),
+            _cardTipo1(),
+            SizedBox(height: 30.0),
+            _cardTipo2(),
+            SizedBox(height: 30.0),
+            _cardTipo1(),
+            SizedBox(height: 30.0),
+            _cardTipo2(),
+            SizedBox(height: 30.0),
+            _cardTipo1(),
+            SizedBox(height: 30.0),
+            _cardTipo2(),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -26,8 +42,9 @@ class CardPage extends StatelessWidget {
         children: <Widget>[
           ListTile(
             leading: Icon( Icons.photo_album, color: Colors.blue ),
-            title: Text("Soy el titulo"),
-            subtitle: Text("tarjeta de prueba con el curso de udemy"),
+            title: Text("What is Lorem Ipsum?"),
+            subtitle: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" +
+            "text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", textAlign: TextAlign.justify,),
           ),
           Row(
             children: <Widget>[
@@ -39,12 +56,14 @@ class CardPage extends StatelessWidget {
         ],
       ),
       elevation: 10.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       shadowColor: Colors.blue,
     );
   }
 
   Widget _cardTipo2(){
-    return Card( 
+
+    final card = Container( 
         child: Column(
           children: <Widget>[
             FadeInImage(
@@ -60,9 +79,27 @@ class CardPage extends StatelessWidget {
             )
           ],
         ),
-        elevation: 10.0,
-        shadowColor: Colors.amber,
+    );
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              spreadRadius: 2.0,
+              offset: Offset(1.0, -10.0)
+            )
+        ]
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.0),
+        child: card
+      ),
     );
   }
+
+  
 
 }
