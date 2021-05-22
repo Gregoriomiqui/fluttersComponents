@@ -8,6 +8,9 @@ final _iconos = <String, IconData>{
   'folder_open'   :  Icons.folder_open,
   'all_inclusive' :  Icons.all_inclusive,
   'input'         :  Icons.input,
+  'tune'          :  Icons.tune,
+  'bar'           :  Icons.bar_chart,
+  'list'          :  Icons.list,
 
 };
 
