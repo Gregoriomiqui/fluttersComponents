@@ -68,20 +68,37 @@ class _ListViewPageState extends State<ListViewPage> {
 
   Widget _crearList() {
 
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: _listaNumeros.length,
-      itemBuilder: (BuildContext context , int index ) {
+    return RefreshIndicator(
+        onRefresh: _obtenerPagina1,
+        child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _listaNumeros.length,
+        itemBuilder: (BuildContext context , int index ) {
 
-        final imagen = _listaNumeros[index];
+          final imagen = _listaNumeros[index];
 
-        return FadeInImage(
-          placeholder: AssetImage('assets/cargando.gif'),
-          image: NetworkImage('https://picsum.photos/500/300/?image=$imagen')
-        );
-      },
+          return FadeInImage(
+            placeholder: AssetImage('assets/cargando.gif'),
+            image: NetworkImage('https://picsum.photos/500/300/?image=$imagen')
+          );
+        },
+      ),
     );
 
+  }
+
+  Future<void> _obtenerPagina1() async {
+    final duration = new Duration( seconds: 2);
+
+    new Timer (duration, (){
+
+      _listaNumeros.clear();
+      _ultimoItem++;
+      _agregar10();
+
+    });
+
+    return Future.delayed(duration);
   }
 
 
@@ -111,7 +128,7 @@ class _ListViewPageState extends State<ListViewPage> {
 
     _scrollController.animateTo(
       _scrollController.position.pixels + 300,
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.fastLinearToSlowEaseIn,
       duration: Duration(milliseconds: 200),
     );
 
