@@ -1,5 +1,7 @@
 
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 
@@ -19,6 +21,7 @@ class _ListViewPageState extends State<ListViewPage> {
 
   List<int> _listaNumeros = [];
   int _ultimoItem = 0;
+  bool _isLoading = false;
 
 
   @override
@@ -29,11 +32,18 @@ class _ListViewPageState extends State<ListViewPage> {
     _scrollController.addListener(() {
         
         if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent ){
-          _agregar10();
+          _fetchData();
         }
     });
 
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
 
 
 
@@ -43,7 +53,12 @@ class _ListViewPageState extends State<ListViewPage> {
       appBar: AppBar(
         title: Text('ListView y Scroll')
       ),
-      body: _crearList(),
+      body: Stack(
+        children:[
+          _crearList(),
+          _crearLoading(),
+        ]
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
         child: Icon(Icons.arrow_back),
@@ -78,4 +93,48 @@ class _ListViewPageState extends State<ListViewPage> {
     }
     setState((){ });
   }
+
+  Future _fetchData() async{
+
+    _isLoading = true;
+    setState((){ });
+    final duration = new Duration( seconds:  2);
+    new Timer(
+      duration,
+      _respuestaHTTP
+    );
+
+  }
+
+  void _respuestaHTTP() {
+    _isLoading = false;
+
+    _scrollController.animateTo(
+      _scrollController.position.pixels + 300,
+      curve: Curves.fastOutSlowIn,
+      duration: Duration(milliseconds: 200),
+    );
+
+    _agregar10();
+  }
+
+
+  Widget _crearLoading(){
+    return _isLoading ? 
+      Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.amber)),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(bottom: 50) )
+        ],
+
+      ) : Container();
+  }
+ 
 }
