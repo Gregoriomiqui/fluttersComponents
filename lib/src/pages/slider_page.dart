@@ -53,7 +53,7 @@ class _SliderPageState extends State<SliderPage> {
 
   Widget _crearImagen(){
     return FadeInImage(
-      image: NetworkImage('https://lh3.googleusercontent.com/proxy/SDHGGSQPSEMdHwH3vjVA4P7br8jlFid2xaM7FVxRfUGgltQDZ8IaguZCnX0vXaT66v57Osun_EXC97nJXJliyaoxWyaoO09DV1f_C6nl5cmi8JE6cQ'),
+      image: NetworkImage('http://assets.stickpng.com/thumbs/58569ca74f6ae202fedf2752.png'),
       placeholder: AssetImage('assets/cargando.gif'),
       width: _valorSlider,
       fit: BoxFit.contain,

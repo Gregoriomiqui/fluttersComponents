@@ -27,7 +27,7 @@ class AvatarPage extends StatelessWidget {
             child: FadeInImage(
               image: NetworkImage(
                   'https://frasesdelavida.com/wp-content/uploads/2018/04/Lobezno.jpg'),
-              placeholder: AssetImage('assets/loading.gif'),
+              placeholder: AssetImage('assets/cargando.gif'),
               fadeInDuration: Duration(milliseconds: 200),
             ),
           ),
